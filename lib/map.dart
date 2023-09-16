@@ -7,6 +7,7 @@ import 'package:http/http.dart' as http;
 import 'package:plati_online/data/map_data.dart';
 import 'package:plati_online/key.dart';
 
+/// Represents a Flutter widget for displaying a map with markers.
 class MapSample extends StatefulWidget {
   final String _keyword;
 
@@ -16,6 +17,7 @@ class MapSample extends StatefulWidget {
   State<MapSample> createState() => MapSampleState(_keyword);
 }
 
+/// Represents the state for the map widget.
 class MapSampleState extends State<MapSample> {
   Set<Marker> markers = {};
   final String _radius = "10000";
@@ -41,6 +43,8 @@ class MapSampleState extends State<MapSample> {
     makeHttpPost();
   }
 
+  /// Makes an HTTP POST request to retrieve data from Google Places API
+  /// based on the current location and a keyword.
   void makeHttpPost() async {
     String currentLocationString = "";
     String keyword = "$_keyword near me";
@@ -112,10 +116,12 @@ class MapSampleState extends State<MapSample> {
     );
   }
 
+  /// Handles the 'Назад' (Back) button press to navigate back to the previous screen.
   Future<void> _back() async {
     Navigator.of(context).pop(true);
   }
 
+  /// Retrieves the current location using the Location package.
   Future<LocationData?> getLocation() async {
     bool serviceEnabled;
     PermissionStatus permissionGranted;

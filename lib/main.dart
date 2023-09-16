@@ -4,14 +4,28 @@ import 'package:plati_online/data/icon.dart';
 import 'package:plati_online/map.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+/// Flutter application for 'Плати онлине' (Pay Online).
+///
+/// This application allows users to pay online for various services and
+/// provides a map feature for selecting service icons.
+///
+/// The app consists of two main screens:
+/// 1. Home Screen: Displays a list of service icons that users can tap to
+///    open a web link or view on the map.
+/// 2. Map Screen: Shows the selected service icon on the map.
+///
+/// The app uses several Flutter packages, including 'url_launcher' for
+/// opening web links and 'google_maps_flutter' for displaying maps.
+///
+/// This is the main entry point for the application.
 void main() {
   runApp(const MyApp());
 }
 
+/// The main application widget.
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -25,6 +39,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
+/// The home screen of the application.
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
   final String title;
@@ -33,16 +48,19 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
+/// The state for the home screen.
 class _MyHomePageState extends State<MyHomePage> {
   AppData data = AppData();
   bool mapEnapled = false;
 
+  /// Toggles the map feature on and off.
   void onPressed() {
     setState(() {
       mapEnapled ? mapEnapled = false : mapEnapled = true;
     });
   }
 
+  /// Handles the tap event for a service icon.
   void onTap(AppIcon appIcon) async {
     if (mapEnapled) {
       String name = appIcon.name;
@@ -98,6 +116,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
+/// Represents a row of service icons.
 class ListRow extends StatelessWidget {
   final List<AppIcon> iconList;
   static double iconSize = 60;
@@ -131,6 +150,7 @@ class ListRow extends StatelessWidget {
   );
 }
 
+/// Represents a single service icon.
 class RowElement extends StatelessWidget {
   final AppIcon appIcon;
   final double iconSize;
